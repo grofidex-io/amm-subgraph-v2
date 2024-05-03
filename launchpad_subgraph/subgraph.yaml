@@ -1,0 +1,38 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: LaunchPad
+    network: testnet
+    source:
+      abi: LaunchPad
+      startBlock: 24151134
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - CancelCommit
+        - ClaimGiveBack
+        - ClaimToken
+        - Commit
+        - Refund
+        - ApplyWhiteList
+      abis:
+        - name: LaunchPad
+          file: ./abis/LaunchPad.json
+      eventHandlers:
+        - event: CancelCommit(indexed address,indexed address,indexed uint256,uint256)
+          handler: handleCancel
+        - event: ClaimGiveBack(indexed address,indexed address,indexed uint256)
+          handler: handleClaimGiveBack
+        - event: ClaimToken(indexed address,indexed address,indexed uint256)
+          handler: handleClaimToken
+        - event: Commit(indexed address,indexed address,indexed uint256)
+          handler: handleCommit
+        - event: Refund(indexed address,indexed address,indexed uint256)
+          handler: handleRefund
+        - event: ApplyWhiteList(indexed address)
+          handler: handleApplyWhiteList
+      file: ./src/launch-pad.ts

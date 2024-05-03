@@ -1,0 +1,8 @@
+{
+  "mainnet": {
+    "LaunchPad": {
+      "address": "0x7C6a0DEEECBF5D3165Db2d9D70D9bE77B88F255f",
+      "startBlock": 0
+    }
+  }
+}

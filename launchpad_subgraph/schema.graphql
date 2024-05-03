@@ -1,0 +1,32 @@
+type User @entity {
+  id: ID!
+  transactionHistorys: [TransactionHistory!]! @derivedFrom(field: "user")
+  commits: [UserCommit!]! @derivedFrom(field: "user")
+  projects: [String!]!
+}
+
+type TransactionHistory @entity {
+  id: ID! #LoanId+type
+  transactionType: String!
+  processTime: Int!
+  u2uAmount: BigInt!
+  tokenAmount: BigInt!
+  roundType: String!
+  user: User!
+  launchpadAddress: String!
+  roundAddress: String!
+  hash: String!
+}
+
+type UserCommit @entity {
+  id: ID! 
+  user: User!
+  u2uAmount: BigInt!
+  roundAddress: String!
+  launchpadAddress: String!
+  roundType: String!
+  startCancel: Int!
+  endCancel: Int!
+  isClaimed: Boolean!
+  processTime: Int!
+}

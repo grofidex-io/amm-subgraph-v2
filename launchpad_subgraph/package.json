@@ -1,0 +1,17 @@
+{
+  "name": "launchpad",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "create-local": "graph create --node http://localhost:8021/ amm/launchpad",
+    "remove-local": "graph remove --node http://localhost:8021/ amm/launchpad",
+    "deploy-local": "graph deploy --node http://localhost:8021/ --ipfs http://localhost:5002 amm/launchpad -l v0.0.1",
+    "deploy-all": "npm run codegen && npm run build && npm run remove-local && npm run create-local && npm run deploy-local"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.60.0",
+    "@graphprotocol/graph-ts": "0.30.0"
+  },
+  "devDependencies": { "matchstick-as": "0.5.0" }
+}

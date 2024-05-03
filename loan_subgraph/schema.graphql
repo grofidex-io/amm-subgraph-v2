@@ -1,0 +1,44 @@
+type Loan @entity {
+  id: ID! #tokenId
+  borrowAmount: BigInt!
+  borrowTime: Int!
+  stakeAmount: BigInt!
+  repayAmount: BigInt!
+  repayTime: Int!
+  user: User!
+  loanPackage: LoanPackage
+  stakeId: BigInt!
+  payOffTime: Int!
+}
+
+type User @entity {
+  id: ID!
+  loans: [Loan!]! @derivedFrom(field: "user")
+  loanHistorys: [LoanHistory!]! @derivedFrom(field: "user")
+}
+
+type LoanPackage @entity {
+  id: ID! #Id
+  period: Int!
+  maxBorrowRatio: BigDecimal!
+  annualRate: BigDecimal!
+  minBorrow: BigInt!
+  symbolTime: String!
+  annualRateOrigin: BigInt!
+}
+
+type LoanHistory @entity {
+  id: ID! #LoanId+type
+  type: String!
+  borrowTime: Int!
+  processTime: Int!
+  borrowAmount: BigInt!
+  repayAmount: BigInt!
+  repayTime: Int!
+  stakeAmount: BigInt!
+  loanId: BigInt!
+  rewardUser: BigInt!
+  user: User!
+  stakeId: BigInt!
+  txn: String!
+}

@@ -1,0 +1,47 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: TreasuryBorrow
+    network: testnet
+    source:
+      address: "0x49849fB9E16d146b310B20Bf7cEf5Cb479dcAc2A"
+      abi: TreasuryBorrow
+      startBlock: 22292396
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - Borrow
+        - ConfigPackage
+        - PayOff
+        - ReturnStakingNFT
+        - Transfer
+        - Withdraw
+      abis:
+        - name: TreasuryBorrow
+          file: ./abis/TreasuryBorrow.json
+        - name: Staking
+          file: ./abis/Staking.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: Borrow(indexed uint256,indexed address,indexed uint256,uint256,uint256)
+          handler: handleBorrow
+        - event: ConfigPackage(indexed uint256,indexed uint256,indexed uint256,uint256,uint256)
+          handler: handleConfigPackage
+        - event: PayOff(indexed uint256,indexed address,uint256,uint256,uint256)
+          handler: handlePayOff
+        - event: ReturnStakingNFT(indexed uint256,indexed address,uint256)
+          handler: handleReturnStakingNFT
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: Withdraw(indexed uint256,indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/mapping.ts
