@@ -1,0 +1,25 @@
+type PoolPackage @entity {
+  id: ID! 
+  address: String!
+  startTime: Int!
+  endTime: Int!
+  tokenPerSecond: BigInt!
+  stakes: [Stake!]! @derivedFrom(field: "poolPackage")
+  token0: String!
+  token1: String!
+  fee: Int!
+}
+
+type User @entity {
+  id: ID!
+  stakes: [Stake!]! @derivedFrom(field: "user")
+}
+
+type Stake @entity {
+  id: ID! #Id
+  user: User!
+  startStake: Int!
+  poolPackage: PoolPackage!
+  tokenId: BigInt!
+}
+
