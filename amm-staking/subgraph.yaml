@@ -6,9 +6,9 @@ dataSources:
     name: AMMStake
     network: testnet
     source:
-      address: "0x26766fa7961463164677AC3842043261317847a9"
+      address: "0xC1B294E3F0185A756c2d58463F42AE0882fEdCb6"
       abi: AMMStake
-      startBlock: 48120081
+      startBlock: 48133527
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
